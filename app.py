@@ -19,7 +19,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 # Load your trained model
-MODEL_PATH ='My_model.h5'
+MODEL_PATH ='My_model2.h5'
 model = load_model(MODEL_PATH)
 
 
@@ -30,8 +30,6 @@ def model_predict(img_path, model):
     x = image.img_to_array(img)
     x=x/255
     x = np.expand_dims(x, axis=0)
-    x = preprocess_input(x)
-
     preds = model.predict(x)
     preds=np.argmax(preds, axis=1)
     if preds==0:
@@ -68,4 +66,4 @@ def upload():
 
 
 if __name__ == '__main__':
-    app.run(port=500,debug=True)
+    app.run(port=5000,debug=True)
